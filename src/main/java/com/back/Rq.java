@@ -1,5 +1,8 @@
 package com.back;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Rq {
     private final String cmd;
 
@@ -17,16 +20,19 @@ public class Rq {
 
         String[] queryStringBits = queryString.split("&");
 
+        Map<String, String> params = new HashMap<>();
+
         for( String queryStr : queryStringBits) {
            String[] paramStrBits = queryStr.split("=", 2);
 
             String paramName = paramStrBits[0];
             String paramValue = paramStrBits[1];
 
-            if(paramName.equals(name)) return paramValue;
+           params.put(paramName, paramValue);
         }
 
-        return defaultValue;
+        return params.getOrDefault(name, defaultValue);
+
     }
 }
 
