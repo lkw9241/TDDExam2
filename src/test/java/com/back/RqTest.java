@@ -26,15 +26,15 @@ public class RqTest {
         assertEquals("삭제", actionName);
     }
 
-}
+
 
 
 @Test
-@DisplayName("\"등록?이름=홍길동\"=rq.getActionName()")
+@DisplayName("\"등록?이름=홍길동\"=rq.getParam(\"이름\", \"\")")
 void t3() {
     Rq rq = new Rq("등록?이름=홍길동");
 
-    String actionName = rq.getParam("홍길동","");
+    String name = rq.getParam("홍길동","");
 
     assertEquals("홍길동", name);
 }
