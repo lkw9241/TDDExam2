@@ -1,7 +1,8 @@
 package com.back;
 
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Rq {
     private final String cmd;
@@ -11,19 +12,10 @@ public class Rq {
         this.cmd = cmd;
 
         String queryString = cmd.split("\\?", 2)[1];
-
-        String[] queryStringBits = queryString.split("&");
-
-        params = new HashMap<>();
-
-        for( String queryStr : queryStringBits) {
-            String[] paramStrBits = queryStr.split("=", 2);
-
-            String paramName = paramStrBits[0];
-            String paramValue = paramStrBits[1];
-
-            params.put(paramName, paramValue);
-        }
+        params = Arrays
+                .stream(queryString.split("&"))
+                .map(e -> e.split("=", 2))
+                .collect(Collectors. toMap( e-> e[0], e -> e[1]));
 
     }
 
