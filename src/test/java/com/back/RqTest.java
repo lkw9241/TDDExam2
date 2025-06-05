@@ -27,48 +27,57 @@ public class RqTest {
     }
 
 
+    @Test
+    @DisplayName("\"등록?이름=홍길동\"=rq.getParam(\"이름\", \"\")")
+    void t3() {
+        Rq rq = new Rq("등록?이름=홍길동");
+
+        String name = rq.getParam("이름", "");
+
+        assertEquals("홍길동", name);
+    }
 
 
-@Test
-@DisplayName("\"등록?이름=홍길동\"=rq.getParam(\"이름\", \"\")")
-void t3() {
-    Rq rq = new Rq("등록?이름=홍길동");
+    @Test
+    @DisplayName("\"등록?고향=남원\"=rq.getParam(\"고향\", \"\")")
+    void t4() {
+        Rq rq = new Rq("등록?고향=남원");
 
-    String name = rq.getParam("이름","");
+        String paramValue = rq.getParam("고향", "");
 
-    assertEquals("홍길동", name);
-}
-
-
-
-@Test
-@DisplayName("\"등록?고향=남원\"=rq.getParam(\"고향\", \"\")")
-void t4() {
-    Rq rq = new Rq("등록?고향=남원");
-
-    String paramValue = rq.getParam("고향","");
-
-    assertEquals("남원", paramValue);
-}
+        assertEquals("남원", paramValue);
+    }
 
     @Test
     @DisplayName("\"등록?이름=홍길동&고향=남원\" : rq.getParam(\"이름\", \"\")")
     void t5() {
         Rq rq = new Rq("등록?이름=홍길동&고향=남원");
 
-        String paramValue = rq.getParam("이름","");
+        String paramValue = rq.getParam("이름", "");
 
         assertEquals("홍길동", paramValue);
     }
+
     @Test
     @DisplayName("\"등록?이름=홍길동&고향=남원\" : rq.getParam(\"고향\", \"\")")
     void t6() {
         Rq rq = new Rq("등록?이름=홍길동&고향=남원");
 
-        String paramValue = rq.getParam("고향","");
+        String paramValue = rq.getParam("고향", "");
 
         assertEquals("남원", paramValue);
     }
+
+    @Test
+    @DisplayName("\"등록?이름=홍길동&고향=남원&성별=남성\" : rq.getParam(\"성별\", \"\")")
+    void t7() {
+        Rq rq = new Rq("등록?이름=홍길동&고향=남원&성별=남성");
+
+        String paramValue = rq.getParam("성별", "");
+
+        assertEquals("남성", paramValue);
+    }
+
 }
 
 //re.getParam("이름") // 홍길동
