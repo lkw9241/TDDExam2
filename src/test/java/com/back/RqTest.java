@@ -39,6 +39,20 @@ void t3() {
     assertEquals("홍길동", name);
 }
 
+
+
+@Test
+@DisplayName("\"등록?고향=남원\"=rq.getParam(\"고향\", \"\")")
+void t4() {
+    Rq rq = new Rq("등록?고향=남원");
+
+    String paramValue = rq.getParam("고향","");
+
+    assertEquals("남원", paramValue);
+}
+
 }
 
 //re.getParam("이름") // 홍길동
+//등록?이름 = 홍길동
+//등록?고향=남원
