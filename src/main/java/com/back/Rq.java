@@ -12,13 +12,22 @@ public class Rq {
     }
 
     public String getParam(String name, String defaultValue) {
-        if (cmd.equals("등록?고향=남원")&& name.equals("고향")) return "남원";
-        if (cmd.equals("등록?이름=홍길동")&& name.equals("이름")) return "홍길동";
+        String queryString = cmd.split("\\?", 2)[1];
 
-        return "";
+        String[] paramBits=queryString.split("=", 2);
 
-        }
+        String paramName = paramBits[0];
+        String paramValue = paramBits[1];
+
+        if(!name.equals(paramName)) return defaultValue;
+        else return paramValue;
+    }
 }
+
+//        if (cmd.equals("등록?고향=남원")&& name.equals("고향")) return "남원";
+//        if (cmd.equals("등록?이름=홍길동")&& name.equals("이름")) return "홍길동";
+
+
 //        if (cmd.equals("수정?id=1")) return "수정";
 //        if (cmd.equals("삭제?id=1")) return "삭제";
 //  리팩토링 -> 중복제거
