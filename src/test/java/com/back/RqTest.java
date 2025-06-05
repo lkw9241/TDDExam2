@@ -132,6 +132,17 @@ public class RqTest {
 
     }
 
+    @Test
+    @DisplayName("\"목록?page=2번\" : rq.getParam(\"page\", \"1\")")
+    void t12() {
+        Rq rq = new Rq("목록?page=2번");
+
+        int value = rq.getParamAsInt("page", 1);
+
+        assertThat(value).isEqualTo(1);
+
+    }
+
 }
 
 //re.getParam("이름") // 홍길동
