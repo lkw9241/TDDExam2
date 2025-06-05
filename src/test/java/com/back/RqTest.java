@@ -84,7 +84,7 @@ public class RqTest {
 
         String paramValue = rq.getParam("성별", "모름");
 
-        assertEquals("", paramValue);
+        assertEquals("모름", paramValue);
     }
 
 //    @Test
