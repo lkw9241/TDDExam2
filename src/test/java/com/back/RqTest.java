@@ -126,9 +126,9 @@ public class RqTest {
     void t11() {
         Rq rq = new Rq("목록?page=2");
 
-        int value = rq.getParamAsInt("page", "1");
+        int value = rq.getParamAsInt("page", 1);
 
-        assertThat(value).isEqualTo("2");
+        assertThat(value).isEqualTo(2);
 
     }
 

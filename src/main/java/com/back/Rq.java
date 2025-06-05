@@ -30,6 +30,14 @@ public class Rq {
         return params.getOrDefault(name, defaultValue);
 
     }
+
+    public int getParamAsInt(String name, int defaultValue) {
+        String value =  getParam(name, "");
+
+        if(value.isBlank()) return defaultValue;
+
+        return Integer.parseInt(value);
+    }
 }
 
 //        if (cmd.equals("등록?고향=남원")&& name.equals("고향")) return "남원";
