@@ -5,9 +5,26 @@ import java.util.Map;
 
 public class Rq {
     private final String cmd;
+    private final Map<String, String> params;
 
     public Rq(String cmd){
         this.cmd = cmd;
+
+        String queryString = cmd.split("\\?", 2)[1];
+
+        String[] queryStringBits = queryString.split("&");
+
+        params = new HashMap<>();
+
+        for( String queryStr : queryStringBits) {
+            String[] paramStrBits = queryStr.split("=", 2);
+
+            String paramName = paramStrBits[0];
+            String paramValue = paramStrBits[1];
+
+            params.put(paramName, paramValue);
+        }
+
     }
 
     public String getActionName() {
@@ -15,22 +32,6 @@ public class Rq {
     }
 
     public String getParam(String name, String defaultValue) {
-
-        String queryString = cmd.split("\\?", 2)[1];
-
-        String[] queryStringBits = queryString.split("&");
-
-        Map<String, String> params = new HashMap<>();
-
-        for( String queryStr : queryStringBits) {
-           String[] paramStrBits = queryStr.split("=", 2);
-
-            String paramName = paramStrBits[0];
-            String paramValue = paramStrBits[1];
-
-           params.put(paramName, paramValue);
-        }
-
         return params.getOrDefault(name, defaultValue);
 
     }
